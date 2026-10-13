@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>اختبار محاكي - معلم مساعد إنجليزي | ببساطة</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#1b2440;--mut:#5d6785;--pri:#1f4fd8;--pri2:#6a3df0;--ok:#16a34a;--okb:#e7f8ee;--no:#dc2626;--nob:#fdeaea;--bd:#e1e6f2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1424;--card:#171f36;--tx:#eaf0ff;--mut:#9aa7c9;--pri:#6b8cff;--pri2:#9b7bff;--okb:#10301f;--nob:#3a1717;--bd:#2a3556}}
+:root[data-theme="dark"]{--bg:#0e1424;--card:#171f36;--tx:#eaf0ff;--mut:#9aa7c9;--pri:#6b8cff;--pri2:#9b7bff;--okb:#10301f;--nob:#3a1717;--bd:#2a3556}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Tahoma,"Segoe UI",Arial,sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:auto;padding:16px}
+header{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border-radius:20px;padding:24px 18px;text-align:center}
+header h1{margin:6px 0;font-size:23px}
+header p{margin:3px 0;font-size:14px;opacity:.95}
+.badge{display:inline-block;background:rgba(255,255,255,.2);padding:3px 14px;border-radius:99px;font-size:13px}
+.bar{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px 14px;margin:14px 0;display:flex;gap:12px;align-items:center;font-size:14px}
+.pg{flex:1;height:8px;background:var(--bd);border-radius:9px;overflow:hidden}
+.pg i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pri),var(--pri2));transition:width .3s}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:18px}
+.qt{font-weight:700;direction:ltr;text-align:left;font-size:19px}
+.qn{color:var(--pri);margin-inline-end:6px}
+.opts{display:grid;gap:9px;margin:14px 0;direction:ltr}
+.o{display:flex;gap:10px;align-items:center;padding:12px;border:2px solid var(--bd);border-radius:12px;cursor:pointer;text-align:left;background:transparent;color:var(--tx);font:inherit;font-size:17px;width:100%}
+.o:hover:not(:disabled){border-color:var(--pri)}
+.o:disabled{cursor:default}
+.o b{width:28px;height:28px;border-radius:50%;background:var(--bd);display:grid;place-items:center;font-size:13px;flex:none}
+.o.right{border-color:var(--ok);background:var(--okb)}.o.right b{background:var(--ok);color:#fff}
+.o.wrong{border-color:var(--no);background:var(--nob)}.o.wrong b{background:var(--no);color:#fff}
+.box{display:none;border-radius:10px;padding:10px 12px;font-size:14.5px;margin-top:8px}
+.box.show{display:block}
+.tr{background:color-mix(in srgb,#f59e0b 14%,transparent);border-right:4px solid #f59e0b}
+.ex{background:color-mix(in srgb,var(--pri) 9%,transparent);border-right:4px solid var(--pri)}
+.fb{display:none;font-weight:800;margin:6px 0}
+.fb.ok{display:block;color:var(--ok)}.fb.no{display:block;color:var(--no)}
+.btn{border:0;border-radius:12px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;color:#fff;background:var(--pri)}
+.btn.s{background:transparent;color:var(--pri);border:2px solid var(--pri);padding:7px 14px;font-size:14px}
+.btn.big{width:100%;font-size:18px;padding:14px;margin-top:14px;background:linear-gradient(135deg,var(--pri),var(--pri2));display:none}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.res{display:none;text-align:center;background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px}
+.score{font-size:48px;font-weight:800;color:var(--pri)}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:#fff;text-decoration:none;font-weight:800;border-radius:14px;padding:13px;margin:12px 0;font-size:16px}
+.camp{background:linear-gradient(135deg,#0f7a3d,#25d366);color:#fff;border-radius:18px;padding:18px;text-align:center;margin:18px 0}
+.camp .wa{background:#fff;color:#0f7a3d}
+footer{text-align:center;color:var(--mut);font-size:13px;margin:20px 0}
+.menu{display:block;margin:14px 0}.menu h2{text-align:center;margin:8px 0}.mg{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mc{border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:16px;padding:18px 10px;font:inherit;cursor:pointer;text-align:center}.mc:hover{border-color:var(--pri)}.mc b{display:block;font-size:19px;color:var(--pri)}.mc span{font-size:13px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<span class="badge">مقدم من صفحة ببساطة</span>
+<h1>اختبار محاكي: اللغة الإنجليزية</h1>
+<p>مسابقة معلم مساعد — التنظيم والإدارة</p>
+<p>إعداد: مستر محمد سيد &nbsp;|&nbsp; مس نورهان إبراهيم</p>
+</header>
+<a class="wa" id="wa1" target="_blank" rel="noopener">💬 تواصل معنا على واتساب</a>
+
+<div class="menu" id="menu"><h2>اختر الاختبار</h2><div class="mg"><button class="mc" data-ex="0"><b>📝 الاختبار الأول</b><span>50 سؤال – ترتيب عشوائي</span></button><button class="mc" data-ex="1"><b>📝 الاختبار الثاني</b><span>50 سؤال – ترتيب عشوائي</span></button><button class="mc" data-ex="2"><b>📝 الاختبار الثالث</b><span>50 سؤال – ترتيب عشوائي</span></button><button class="mc" data-ex="3"><b>📝 الاختبار الرابع</b><span>50 سؤال – ترتيب عشوائي</span></button></div></div>
+<div class="bar" id="bar" style="display:none"><button class="btn s" id="home2" style="padding:4px 10px">🏠 الرئيسية</button><span id="cnt"></span><div class="pg"><i id="pg"></i></div><span id="tm">00:00</span></div>
+
+<div id="quiz" class="q" style="display:none">
+ <div class="qt" id="qt"></div>
+ <div class="opts" id="opts"></div>
+ <div class="fb" id="fb"></div>
+ <div class="row">
+  <button class="btn s" id="bt">🌐 ترجمة السؤال</button>
+  <button class="btn s" id="be" style="display:none">💡 شرح السؤال</button>
+ </div>
+ <div class="box tr" id="tr"></div>
+ <div class="box ex" id="ex"></div>
+ <button class="btn big" id="nx">التالي ←</button>
+</div>
+
+<div class="res" id="res">
+ <div>نتيجتك النهائية</div>
+ <div class="score" id="sc"></div>
+ <div id="msg" style="font-weight:700"></div>
+ <div class="row" style="justify-content:center"><button class="btn" id="again">🔄 إعادة الاختبار</button><button class="btn s" id="home">🏠 الصفحة الرئيسية</button></div>
+</div>
+
+<div class="camp">
+ <h2 style="margin:0">🎓 انضم إلى معسكر مسابقة معلم مساعد</h2>
+ <p style="margin:6px 0">شرح مكثف، نماذج امتحانات، ومتابعة مستمرة. اشترك الآن عبر واتساب:</p>
+ <a class="wa" id="wa2" target="_blank" rel="noopener">✅ اشترك في المعسكر – 01505191893</a>
+</div>
+<footer>ببساطة © — إعداد مستر محمد سيد ومس نورهان إبراهيم</footer>
+</div>
+
+<script>
+const PH="201505191893";
+const link=t=>"https://wa.me/"+PH+"?text="+encodeURIComponent(t);
+document.getElementById("wa1").href=link("السلام عليكم، عندي استفسار بخصوص اختبار معلم مساعد إنجليزي - ببساطة");
+document.getElementById("wa2").href=link("السلام عليكم، أريد الاشتراك في معسكر مسابقة معلم مساعد - ببساطة");
+
+const ALL=[
+["He's ___ doctor of law.",["an","the","a","one"],2,"نستخدم a قبل الاسم الذي يبدأ بصوت ساكن. كلمة doctor تبدأ بحرف d الساكن فنقول a doctor. أما an فتأتي قبل الأصوات المتحركة مثل an apple.","هو دكتور في القانون."],
+["___ she like chocolates?",["Does","Has","Is","Do"],0,"الجملة في المضارع البسيط والفاعل she مفرد غائب، فنستخدم Does لتكوين السؤال ويأتي بعده الفعل على المصدر: Does she like?","هل تحب هي الشوكولاتة؟"],
+["The student ___ papers.",["writing","writes","write","is writes"],1,"الفاعل the student مفرد غائب في المضارع البسيط فنضيف s للفعل: writes. أما write فتأتي مع I/you/we/they.","الطالب يكتب الأوراق."],
+["___ bag is that?",["What","Who's","Whose","Which"],2,"Whose أداة استفهام عن الملكية (لمن؟). أما Who's فهي اختصار who is أو who has ولا تناسب السؤال عن الملكية.","لمن هذه الحقيبة؟"],
+["He ___ to see his mother yesterday.",["went","goes","has gone","has been"],0,"كلمة yesterday دالة على الماضي البسيط، والماضي من go (فعل شاذ) هو went.","ذهب لزيارة أمه أمس."],
+["He ___ very hard now.",["worked","has been working","is working","works"],2,"كلمة now دالة على المضارع المستمر: is/am/are + V+ing، فتكون is working.","هو يعمل بجد الآن."],
+["She ___ for fifteen years and still likes the job.",["works","worked","is working","has been working"],3,"المدة for fifteen years مع استمرار الحدث حتى الآن تدل على المضارع التام المستمر: has been + V+ing.","هي تعمل منذ خمس عشرة سنة وما زالت تحب الوظيفة."],
+["___ up! or we'll be late.",["You hurry","Be hurrying","Hurry","Hurry you"],2,"هذه جملة أمر (Imperative) وتبدأ بالفعل على المصدر مباشرة بدون فاعل: Hurry up!","أسرع! وإلا سنتأخر."],
+["Their grades are ___ than ours.",["more good","most good","better","gooder"],2,"good صفة شاذة: good – better – the best. لذلك لا نقول more good ولا gooder.","درجاتهم أفضل من درجاتنا."],
+["Look at the clouds, I think it ___",["will rain","is going to rain","rains","rain"],1,"نستخدم be going to للتنبؤ المبني على دليل نراه الآن (الغيوم). أما will فللتنبؤ بدون دليل أو للقرارات اللحظية.","انظر إلى الغيوم، أعتقد أنها ستمطر."],
+["I feel sick, I ___ too much cake earlier.",["eat","am eating","ate","eated"],2,"كلمة earlier تدل على الماضي البسيط، والماضي من eat (فعل شاذ) هو ate وليس eated.","أشعر بالمرض، لقد أكلت كثيرًا من الكعك قبل قليل."],
+["___ phoned yet?",["Had he","Is he","Has he","Did he"],2,"كلمة yet دالة على المضارع التام: Has/Have + فاعل + V3. فنقول Has he phoned yet?","هل اتصل بعد؟"],
+["He is the ___ runner, he won nothing.",["bad","badest","worse","worst"],3,"وجود the يدل على الصفة العليا (Superlative). bad صفة شاذة: bad – worse – the worst.","هو أسوأ عدّاء، لم يفز بشيء."],
+["We ___ like to thank you for your application.",["could","would","will","can"],1,"التعبير الرسمي المهذب: We would like to... ويستخدم للتعبير عن الرغبة أو الشكر بأدب.","نود أن نشكرك على تقديمك."],
+["I have been working here ___ 1991.",["for","since","now","ago"],1,"since تأتي مع نقطة زمنية محددة في الماضي (1991)، أما for فتأتي مع مدة زمنية مثل for ten years.","أعمل هنا منذ عام 1991."],
+["How long have you worked here ___?",["since","for","years","ago"],1,"السؤال How long عن المدة، والجواب المناسب مع المدة هو for (مثل for five years). ولا نستخدم since إلا مع نقطة زمنية.","منذ متى تعمل هنا؟"],
+["The shoes ___ in Italy.",["is made","made","are made","make"],2,"الجملة مبنية للمجهول في المضارع البسيط والفاعل جمع (shoes) فنستخدم are + V3: are made.","الأحذية تُصنع في إيطاليا."],
+["If I ___ a million pounds, I would buy a house.",["have","had","will have","would have"],1,"جملة شرطية من النوع الثاني (غير حقيقي في الحاضر): If + ماضي بسيط, would + V1.","لو كان معي مليون جنيه لاشتريت منزلًا."],
+["The Nile is longer ___ the Amazon.",["the","than","then","that"],1,"في المقارنة بين شيئين نستخدم الصفة + er + than. أما then فتعني (بعد ذلك) وهي كلمة مختلفة.","النيل أطول من الأمازون."],
+["In England the banks ___ at 3 pm.",["are closing","it closes","close","will closed"],2,"الحقائق العامة والأنظمة الثابتة تُعبَّر عنها بالمضارع البسيط، والفاعل banks جمع فيأخذ الفعل بدون s: close.","في إنجلترا تُغلق البنوك الساعة 3 مساءً."],
+["Ali will come soon, ___?",["will he","won't he","doesn't he","isn't he"],1,"في الأسئلة التوكيدية (Question Tag): الجملة المثبتة يتبعها سؤال منفي بنفس الفعل المساعد: will → won't he?","علي سيأتي قريبًا، أليس كذلك؟"],
+["Ali said, \"I am reading English now.\" → Ali said he ___ reading English then.",["is","was","has been","will be"],1,"في الكلام المنقول نحول الأفعال من الحاضر إلى الماضي: am/is → was، وكذلك now → then و I → he.","قال علي: \"أنا أقرأ الإنجليزية الآن\" ← قال علي إنه كان يقرأ الإنجليزية حينئذ."],
+["Active: We keep falcons for hunting. Passive: Falcons ___ kept for hunting.",["is","was","are","were"],2,"المضارع البسيط في المبني للمجهول: is/are + V3. والفاعل falcons جمع فنستخدم are.","نحتفظ بالصقور للصيد ← تُحفظ الصقور للصيد."],
+["Which expression is used to give ADVICE?",["Rubbish!","You should study hard","Never mind","Let's go"],1,"من تعبيرات النصيحة: You should + V، I advise you to + V، If I were you I would... أما Rubbish فعدم تصديق، Never mind عدم لوم، Let's اقتراح.","أي تعبير يُستخدم لتقديم النصيحة؟"],
+["Choose the correct form: She ___ English for 3 hours.",["studies","is studying","has been studying","studied"],2,"المدة for 3 hours مع استمرار الحدث حتى الآن تأخذ المضارع التام المستمر: has/have + been + V+ing.","هي تدرس الإنجليزية منذ 3 ساعات."],
+["What is the past tense of \"sleep\"?",["sleeps","slept","sleeped","sleeping"],1,"sleep فعل شاذ: sleep – slept – slept.","ما هو الماضي من sleep؟"],
+["What is the past form of the verb \"go\"?",["goed","gone","went","goes"],2,"go فعل شاذ: go – went – gone. الماضي البسيط went.","ما صيغة الماضي من go؟"],
+["What is the past participle of \"take\"?",["took","taken","taked","takes"],1,"take – took – taken. التصريف الثالث taken.","ما التصريف الثالث (اسم المفعول) من take؟"],
+["Choose the correct past form of the verb \"take\".",["took","taken","takes","taking"],0,"الماضي البسيط من take هو took.","اختر صيغة الماضي الصحيحة للفعل take."],
+["What is the plural of \"child\"?",["childs","childes","children","childrens"],2,"child جمع شاذ: children.","ما جمع كلمة child؟"],
+["What is the plural of \"woman\"?",["women","womans","womens","womanes"],0,"woman جمع شاذ: women.","ما جمع كلمة woman؟"],
+["What is the plural of \"party\"?",["partys","parties","partyes","partis"],1,"الاسم المنتهي بـ y بعد حرف ساكن: نحذف y ونضيف ies → parties.","ما جمع كلمة party؟"],
+["What is the plural of \"wife\"?",["wifes","wives","wifs","wifees"],1,"الاسم المنتهي بـ fe نحوله إلى ves: wife → wives.","ما جمع كلمة wife؟"],
+["What is the plural of \"thief\"?",["thiefs","thieves","thiefes","thievs"],1,"الاسم المنتهي بـ f/fe يتحول غالبًا إلى ves: thief → thieves.","ما جمع كلمة thief؟"],
+["What is the past perfect of the verb \"eat\"?",["ate eaten","had ate","had eaten","has eaten"],2,"الماضي التام: had + V3، والتصريف الثالث من eat هو eaten.","ما الماضي التام للفعل eat؟"],
+["What is the past participle of \"write\"?",["wrote","written","writed","writing"],1,"write – wrote – written.","ما التصريف الثالث للفعل write؟"],
+["The bird has ___ away.",["fly","flew","flown","flying"],2,"بعد has نستخدم التصريف الثالث: fly – flew – flown.","لقد طار الطائر بعيدًا."],
+["What is the opposite of \"cheap\"?",["expensive","small","cold","weak"],0,"عكس cheap (رخيص) هو expensive (غالي).","ما عكس كلمة cheap؟"],
+["What is the opposite of \"tall\"?",["long","short","big","thin"],1,"عكس tall (طويل) هو short (قصير).","ما عكس كلمة tall؟"],
+["What is the opposite of \"strong\"?",["weak","slow","hard","sad"],0,"عكس strong (قوي) هو weak (ضعيف).","ما عكس كلمة strong؟"],
+["What is the opposite of \"happy\"?",["angry","tired","sad","late"],2,"عكس happy (سعيد) هو sad (حزين).","ما عكس كلمة happy؟"],
+["What is the opposite of \"big\"?",["small","tall","fat","huge"],0,"عكس big (كبير) هو small (صغير).","ما عكس كلمة big؟"],
+["What is the opposite of \"fast\"?",["quick","slow","late","hard"],1,"عكس fast (سريع) هو slow (بطيء).","ما عكس كلمة fast؟"],
+["What is the opposite of \"hot\"?",["warm","cold","dry","cool down"],1,"عكس hot (ساخن) هو cold (بارد).","ما عكس كلمة hot؟"],
+["What is the opposite of \"early\"?",["late","soon","night","slow"],0,"عكس early (مبكرًا) هو late (متأخرًا).","ما عكس كلمة early؟"],
+["What is the opposite of \"clean\"?",["new","dirty","soft","empty"],1,"عكس clean (نظيف) هو dirty (متسخ).","ما عكس كلمة clean؟"],
+["What is the opposite of \"new\"?",["young","small","old","dark"],2,"عكس new (جديد) هو old (قديم).","ما عكس كلمة new؟"],
+["What is the opposite of \"beautiful\"?",["ugly","rough","heavy","poor"],0,"عكس beautiful (جميل) هو ugly (قبيح).","ما عكس كلمة beautiful؟"],
+["What is the opposite of \"easy\"?",["soft","difficult","empty","light"],1,"عكس easy (سهل) هو difficult (صعب).","ما عكس كلمة easy؟"],
+["Which of the following is a vegetable and orange in color?",["carrot","apple","banana","lemon"],0,"الجزر carrot خضار لونه برتقالي.","أي مما يلي خضار لونه برتقالي؟"],
+["Which of the following do we wear around our neck?",["belt","necklace","shoes","glasses"],1,"نرتدي القلادة necklace حول العنق، أما belt فهو الحزام.","ما الذي نرتديه حول رقبتنا؟"],
+["Which of the following is a flower and a symbol of peace?",["Rose","Tree","Carrot","Towel"],0,"الوردة Rose زهرة ورمز للسلام.","أي مما يلي زهرة ورمز للسلام؟"],
+["When blue is mixed with red, it gives:",["Gray","Green","Purple","Orange"],2,"أزرق + أحمر = بنفسجي Purple.","عند خلط الأزرق مع الأحمر ينتج:"],
+["When we mix white and black, it gives:",["Gray","Purple","Brown","Pink"],0,"أبيض + أسود = رمادي Gray.","عند خلط الأبيض والأسود ينتج:"],
+["We use ______ to dry ourselves.",["soap","towel","comb","brush"],1,"نستخدم المنشفة towel للتجفيف بعد الاستحمام.","نستخدم ______ لتجفيف أنفسنا."],
+["Something which is yellow and sour is a:",["lemon","carrot","rose","tomato"],0,"الليمون lemon أصفر وطعمه حامض sour.","شيء أصفر وحامض هو:"],
+["Which animal climbs trees?",["Monkey","Cow","Fish","Snake"],0,"القرد Monkey يتسلق الأشجار.","أي حيوان يتسلق الأشجار؟"],
+["Which animal has a shell?",["Cat","Turtle","Horse","Cheetah"],1,"السلحفاة Turtle لها صدفة shell.","أي حيوان له صدفة؟"],
+["What is the tallest animal? It has a long neck and eats leaves from trees.",["Lion","Giraffe","Camel","Dog"],1,"الزرافة Giraffe أطول الحيوانات وعنقها طويل.","ما أطول حيوان؟ له عنق طويل ويأكل أوراق الأشجار."],
+["Which animal has a trunk?",["Elephant","Horse","Monkey","Bird"],0,"الفيل Elephant له خرطوم trunk.","أي حيوان له خرطوم؟"],
+["Which animal is the fastest among the following?",["Turtle","Cheetah","Snail","Cow"],1,"الفهد Cheetah أسرع حيوان على الأرض.","أي الحيوانات التالية هو الأسرع؟"],
+["The animal that makes the sound \"meow\" is the:",["dog","cow","cat","bird"],2,"القطة cat هي التي تموء meow.","الحيوان الذي يصدر صوت meow هو:"],
+["The person who treats animals is the:",["pilot","vet","baker","nurse"],1,"الطبيب البيطري vet يعالج الحيوانات.","الشخص الذي يعالج الحيوانات هو:"],
+["Who helps the doctor?",["A baker","A pilot","A vet","A nurse"],3,"الممرضة nurse تساعد الطبيب.","من يساعد الطبيب؟"],
+["Who makes bread?",["The baker","The pilot","The nurse","The vet"],0,"الخباز baker هو من يصنع الخبز.","من يصنع الخبز؟"],
+["The meal we eat in the middle of the day is called:",["breakfast","dinner","lunch","supper"],2,"وجبة منتصف اليوم هي الغداء lunch.","الوجبة التي نأكلها في منتصف اليوم تسمى:"],
+["The season between winter and summer is:",["autumn","spring","winter","night"],1,"الفصل بين الشتاء والصيف هو الربيع spring.","الفصل الواقع بين الشتاء والصيف هو:"],
+["The day that comes between Tuesday and Thursday is:",["Monday","Friday","Wednesday","Sunday"],2,"ترتيب الأيام: Tuesday – Wednesday – Thursday.","اليوم الذي يأتي بين الثلاثاء والخميس هو:"],
+["Which of the following is a reflexive pronoun?",["mine","myself","me","my"],1,"الضمائر الانعكاسية: myself, yourself, himself... أما mine فضمير ملكية.","أي مما يلي ضمير انعكاسي؟"],
+["What are \"but, and, nor, yet\"?",["Prepositions","Nouns","Coordinating conjunctions","Verbs"],2,"هذه أدوات ربط (Coordinating conjunctions) تربط الكلمات أو الجمل.","ما نوع الكلمات but, and, nor, yet؟"],
+["This book is ___.",["my","mine","me","myself"],1,"ضمير الملكية mine لا يأتي بعده اسم. أما my فصفة ملكية يأتي بعدها اسم.","هذا الكتاب لي."],
+["Ali solved the problem ___.",["him","his","himself","he"],2,"الضمير الانعكاسي himself يعود على الفاعل نفسه (Ali).","علي حلّ المشكلة بنفسه."],
+["The present perfect is formed with have/has + ___.",["V1","V2","V3","V+ing"],2,"المضارع التام = have/has + التصريف الثالث V3.","المضارع التام يتكون من have/has + ___"],
+["The past perfect is formed with had + ___.",["V1","V3","V+ing","V2"],1,"الماضي التام = had + التصريف الثالث V3.","الماضي التام يتكون من had + ___"],
+["The past continuous is formed with was/were + ___.",["V3","V1","V2","V+ing"],3,"الماضي المستمر = was/were + V+ing.","الماضي المستمر يتكون من was/were + ___"],
+["Which time expression is used with the Simple Present?",["yesterday","every day","last month","ago"],1,"every day دالة على المضارع البسيط، أما البقية فللماضي.","أي كلمة دالة تُستخدم مع المضارع البسيط؟"],
+["Which time expression is used with the Simple Past?",["last month","every day","always","now"],0,"last month دالة على الماضي البسيط.","أي كلمة دالة تُستخدم مع الماضي البسيط؟"],
+["Which word is used with the Present Perfect?",["tomorrow","yesterday","already","ago"],2,"already / just / yet / ever / never دالة على المضارع التام.","أي كلمة تُستخدم مع المضارع التام؟"],
+["Look! The boy ___ with the knife.",["plays","is playing","played","has play"],1,"Look! دالة على المضارع المستمر: is + V+ing.","انظر! الولد يلعب بالسكين."],
+["Ali bought a new car three days ___.",["ago","before","since","for"],0,"ago تدل على الماضي البسيط وتأتي بعد المدة: three days ago.","علي اشترى سيارة جديدة قبل ثلاثة أيام."],
+["When the bell rang, we ___ studying.",["are","were","have been","will be"],1,"When + ماضي بسيط في جملة، والحدث الآخر ماضي مستمر: were studying.","عندما رنّ الجرس كنا نذاكر."],
+["He ___ booked a room before he traveled to London.",["has","had","have","was"],1,"before + ماضي بسيط يدل على أن الحدث الأول ماضي تام: had + V3.","كان قد حجز غرفة قبل أن يسافر إلى لندن."],
+["I will travel to London ___.",["next year","last year","yesterday","ago"],0,"will + V1 تدل على المستقبل، و next year دالة مستقبل.","سأسافر إلى لندن العام القادم."],
+["By the end of this month we will ___ finished all the exams.",["has","have","had","be"],1,"المستقبل التام: will have + V3.","بنهاية هذا الشهر سنكون قد أنهينا كل الامتحانات."],
+["Make negative: She always gets up late.",["She never gets up late.","She doesn't always gets up.","She not gets up late.","She always not gets up."],0,"مع always/usually/sometimes نحذف الكلمة ونضع never مكانها دون حذف s.","اجعل الجملة منفية."],
+["Make negative: Ali plays football.",["Ali don't play football.","Ali doesn't plays football.","Ali doesn't play football.","Ali didn't plays football."],2,"الفعل المنتهي بـ s نستخدم قبله doesn't ونحذف s من الفعل.","اجعل الجملة منفية: علي يلعب كرة القدم."],
+["Make negative: I bought some books.",["I didn't buy any books.","I don't buy some books.","I didn't bought any books.","I not buy any books."],0,"الماضي: didn't + مصدر، ونحوّل some إلى any.","اجعل الجملة منفية."],
+["___ are they playing tennis? In the club.",["When","Where","Why","Who"],1,"in the club مكان، فنسأل بـ Where.","أين يلعبون التنس؟ في النادي."],
+["___ do you go to the club? Twice a week.",["How often","How long","How far","How old"],0,"How often للسؤال عن عدد المرات (كم مرة).","كم مرة تذهب إلى النادي؟ مرتين أسبوعيًا."],
+["You can't speak Spanish, ___?",["can't you","can you","do you","are you"],1,"الجملة منفية فيأتي السؤال مثبتًا بنفس الفعل المساعد: can you?","لا تتحدث الإسبانية، أليس كذلك؟"],
+["I am a student, ___?",["am I","aren't I","isn't I","am not I"],1,"حالة شاذة: I am ... → aren't I?","أنا طالب، أليس كذلك؟"],
+["Let's go shopping, ___?",["will you","shall we","do we","can't we"],1,"حالة شاذة: Let's ... → shall we?","هيا نتسوق، أليس كذلك؟"],
+["Open the door, ___?",["shall we","will you","do you","aren't you"],1,"جملة الأمر يتبعها will you؟","افتح الباب، من فضلك؟"],
+["Reported speech: \"Don't speak up here.\" → The teacher ordered us ___ speak up there.",["not to","don't","to not","no"],0,"النهي في الكلام المنقول: don't → not to، و here → there.","قال المعلم لنا ألا نرفع صوتنا هناك."],
+["Reported speech: \"Do you speak English?\" → He asked me ___ I spoke English.",["that","what","if","do"],2,"أسئلة yes/no في الكلام المنقول تُنقل بـ if ويعود الفعل للماضي.","سألني إذا كنت أتحدث الإنجليزية."],
+["Long form of \"won't\" is:",["will not","would not","wont","was not"],0,"won't شاذة، اختصار will not.","الصيغة الكاملة لـ won't هي:"],
+["Abbreviation of \"Doctor\" is:",["Dc.","Dr.","Doc","Mr."],1,"اختصار Doctor هو Dr. و Mister هو Mr.","اختصار كلمة Doctor هو:"],
+["country + s = ?",["countrys","countries","countryes","countrees"],1,"الاسم المنتهي بـ y بعد ساكن: نحذف y ونضيف ies.","country + s = ؟"],
+["lie + ing = ?",["lieing","liing","lying","lyeing"],2,"الفعل المنتهي بـ ie نحوله إلى y ثم نضيف ing: lying.","lie + ing = ؟"],
+["Excuse me, can I borrow ___ dictionary?", ["your", "yours", "you", "an"], 0, "بعد الفعل نحتاج صفة ملكية قبل الاسم: your.", "من فضلك، هل أستعير قاموسك؟"],
+["___ you busy?", ["Is", "Do", "Are", "Be"], 2, "فاعل you مع to be نستخدم Are.", "هل أنت مشغول؟"],
+["They ___ work every day at 7 o'clock.", ["are starting", "starts", "have starting", "start"], 3, "every day مضارع بسيط، وthey بدون s: start.", "هم يبدأون العمل كل يوم الساعة 7."],
+["Hey, turn the radio down, I ___ to work.", ["tried", "am trying", "have tried", "try"], 1, "الحدث يحدث الآن: am + V+ing.", "اخفض الراديو، أنا أحاول العمل."],
+["Can I have ___ chocolate?", ["some", "many", "all", "few"], 0, "chocolate غير معدود، وفي الطلب نستخدم some.", "هل يمكنني الحصول على بعض الشوكولاتة؟"],
+["\"Are you a student too?\" \"___\"", ["Yes, I do", "Yes, I am study", "Yes, I am", "Yes, I'm do"], 2, "السؤال بـ Are يُجاب بـ am.", "هل أنت طالب أيضًا؟ نعم."],
+["Excuse me, ___ the time?", ["have you", "have you got", "got you", "do you"], 1, "السؤال عن الوقت: have you got the time?", "من فضلك، هل معك الوقت؟"],
+["The coats belong to ___.", ["their", "theirs", "them", "they"], 2, "بعد حرف الجر to نستخدم ضمير المفعول them.", "المعاطف تخصهم."],
+["We don't need the car, we'll go ___.", ["by our feet", "with foot", "on foot", "walk"], 2, "التعبير الصحيح: on foot (سيرًا على الأقدام).", "لا نحتاج السيارة، سنذهب سيرًا."],
+["___ to London before?", ["Be you", "Have you been", "Went you", "Are you"], 1, "before تدل على المضارع التام: Have you been?", "هل ذهبت إلى لندن من قبل؟"],
+["\"What are you doing next Monday?\" \"I ___ to New York, I have my ticket.\"", ["fly", "have flown", "am flying", "to flying"], 2, "خطة مؤكدة في المستقبل: المضارع المستمر.", "سأسافر إلى نيويورك يوم الاثنين."],
+["Where ___ you use to work?", ["do", "did", "are", "have"], 1, "used to تأتي مع did في السؤال.", "أين كنت تعمل سابقًا؟"],
+["Look there! The robbers ___ away.", ["run", "are running", "have been running", "ran"], 1, "Look! تدل على حدث الآن: are + V+ing.", "انظر! اللصوص يهربون."],
+["He looks angry. He ___ his wallet.", ["lose", "has lost", "is losing", "loses"], 1, "النتيجة ظاهرة الآن: المضارع التام.", "يبدو غاضبًا. لقد فقد محفظته."],
+["She is ___ intelligent than him.", ["most", "much", "more", "many"], 2, "صفة طويلة في المقارنة: more + adj + than.", "هي أذكى منه."],
+["Look, they ___ a new house.", ["are got", "have got", "have get", "gets"], 1, "have got بمعنى يملك مع they.", "انظر، لديهم منزل جديد."],
+["\"Whose book is that?\" \"It's ___.\"", ["he's", "him", "his", "he"], 2, "his ضمير ملكية بمعنى (كتابه).", "لمن هذا الكتاب؟ إنه له."],
+["I'm meeting her ___ 4 o'clock ___ Monday.", ["on, at", "at, on", "with, on", "at, in"], 1, "at مع الساعة، on مع الأيام.", "سأقابلها الساعة 4 يوم الاثنين."],
+["___ you assist me later, sir?", ["May", "Are", "Could", "If"], 2, "Could للطلب المهذب.", "هل يمكنك مساعدتي لاحقًا يا سيدي؟"],
+["When I was younger, I ___ swim ten miles.", ["can", "will", "often", "could"], 3, "could ماضي can للقدرة في الماضي.", "عندما كنت أصغر، كنت أستطيع السباحة عشرة أميال."],
+["He always drives too ___.", ["faster", "fast", "quick", "hard"], 1, "fast صفة وظرف بنفس الشكل.", "هو دائمًا يقود بسرعة كبيرة."],
+["It's the fifteenth ___ March.", ["of", "from", "in", "on"], 0, "التاريخ: the fifteenth of March.", "إنه الخامس عشر من مارس."],
+["There is the woman ___ shot the president.", ["what", "who", "which", "whose"], 1, "who للعاقل.", "هذه هي المرأة التي أطلقت النار على الرئيس."],
+["Rosemary is a cousin of ___.", ["myself", "me", "mine", "my"], 2, "بعد of نستخدم ضمير الملكية mine.", "روزماري ابنة عمي."],
+["When the phone rang, she ___ the meal.", ["cooked", "was cooking", "has cooked", "cooks"], 1, "حدث طويل قُطع بحدث قصير: ماضي مستمر.", "عندما رنّ الهاتف كانت تطبخ الوجبة."],
+["The President always works ___.", ["hardily", "hard", "very much", "hardly"], 1, "hard صفة وظرف، ولا نقول hardily.", "الرئيس يعمل دائمًا بجد."],
+["If it rains, you ___ take a taxi.", ["will", "would", "should have", "had"], 0, "شرط حقيقي: If + مضارع, will + V1.", "إذا أمطرت فستركب تاكسي."],
+["He put the papers ___ the drawer.", ["into", "at", "onto", "by"], 0, "into للدخول إلى الداخل.", "وضع الأوراق داخل الدرج."],
+["He is always thinking about ___.", ["him", "he", "himself", "his"], 2, "الفاعل والمفعول نفس الشخص: himself.", "هو دائمًا يفكر في نفسه."],
+["Could you translate this document ___ Latin?", ["in", "to", "into", "at"], 2, "translate into لغة.", "هل يمكنك ترجمة هذه الوثيقة إلى اللاتينية؟"],
+["She got up early ___ catch the bus to school.", ["to", "for", "at", "and"], 0, "to + V1 للتعبير عن الغرض.", "استيقظت مبكرًا لتلحق بالأتوبيس."],
+["The Red Sea is ___ than the Mediterranean Sea.", ["small", "smaller", "more small", "smallest"], 1, "المقطع الواحد: صفة + er + than.", "البحر الأحمر أصغر من البحر المتوسط."],
+["Will we have class tomorrow? No, we ___.", ["will", "may", "wouldn't", "won't"], 3, "الإجابة المنفية لـ will هي won't.", "هل سيكون لدينا حصة غدًا؟ لا."],
+["What is the past simple of \"begin\"?", ["begun", "began", "beginned", "begins"], 1, "begin – began – begun.", "ما ماضي begin؟"],
+["What is the past participle of \"begin\"?", ["began", "begun", "begin", "begined"], 1, "التصريف الثالث: begun.", "ما التصريف الثالث لـ begin؟"],
+["The past simple of \"build\" is:", ["builded", "built", "build", "buildt"], 1, "build – built – built.", "ماضي build هو:"],
+["He has ___ to my house.", ["came", "come", "comes", "coming"], 1, "بعد has: V3، وcome – came – come.", "لقد جاء إلى منزلي."],
+["The past participle of \"do\" is:", ["did", "done", "doed", "does"], 1, "do – did – done.", "التصريف الثالث لـ do:"],
+["She has ___ a new car.", ["drove", "drived", "driven", "drive"], 2, "drive – drove – driven.", "لقد قادت سيارة جديدة."],
+["The past simple of \"fall\" is:", ["fell", "fallen", "falled", "falls"], 0, "fall – fell – fallen.", "ماضي fall:"],
+["The past simple of \"find\" is:", ["finded", "founded", "found", "finds"], 2, "find – found – found.", "ماضي find:"],
+["The past participle of \"give\" is:", ["gave", "given", "gived", "gives"], 1, "give – gave – given.", "التصريف الثالث لـ give:"],
+["The past simple of \"hear\" is:", ["heard", "heared", "hearing", "hears"], 0, "hear – heard – heard.", "ماضي hear:"],
+["The past simple of \"keep\" is:", ["keeped", "kept", "keep", "keeps"], 1, "keep – kept – kept.", "ماضي keep:"],
+["The past simple of \"leave\" is:", ["leaved", "left", "lefted", "leaves"], 1, "leave – left – left.", "ماضي leave:"],
+["The past simple of \"lose\" is:", ["losed", "lose", "lost", "loses"], 2, "lose – lost – lost.", "ماضي lose:"],
+["The past simple of \"run\" is:", ["runned", "ran", "run", "runs"], 1, "run – ran – run.", "ماضي run:"],
+["The past participle of \"speak\" is:", ["spoke", "spoken", "speaked", "speaks"], 1, "speak – spoke – spoken.", "التصريف الثالث لـ speak:"],
+["The past participle of \"swim\" is:", ["swam", "swum", "swimmed", "swims"], 1, "swim – swam – swum.", "التصريف الثالث لـ swim:"],
+["The past participle of \"wear\" is:", ["wore", "wared", "worn", "wears"], 2, "wear – wore – worn.", "التصريف الثالث لـ wear:"],
+["The past simple of \"tell\" is:", ["telled", "told", "tole", "tells"], 1, "tell – told – told.", "ماضي tell:"],
+["The past simple of \"admire\" is:", ["admired", "admirred", "admiren", "admiring"], 0, "فعل منتظم ينتهي بـ e: نضيف d فقط.", "ماضي admire:"],
+["The past simple of \"cry\" is:", ["cryed", "cried", "crid", "cries"], 1, "y بعد ساكن تتحول إلى ied.", "ماضي cry:"],
+["The past simple of \"travel\" is:", ["traveled only", "travelled", "travelen", "travels"], 1, "في الملف: travel → travelled.", "ماضي travel:"],
+["study + ed = ?", ["studyed", "studied", "studed", "studdied"], 1, "y بعد ساكن تتحول إلى ied.", "study + ed = ؟"],
+["pay + ed = ? (irregular)", ["payed", "paid", "paied", "payd"], 1, "pay فعل شاذ: paid.", "pay + ed = ؟"],
+["What does the verb \"lend\" mean?", ["يعير", "يسرق", "يكسر", "يبني"], 0, "lend = يعير.", "ما معنى lend؟"],
+["What does the verb \"steal\" mean?", ["يسرق", "يشتري", "يعطي", "يجلس"], 0, "steal = يسرق.", "ما معنى steal؟"],
+["What does the verb \"hurt\" mean?", ["يؤذي", "يمسك", "يفوز", "يعرف"], 0, "hurt = يؤذي.", "ما معنى hurt؟"],
+["What does the verb \"scold\" mean?", ["يوبخ", "يبتسم", "يحزم", "يرسم"], 0, "scold = يوبخ.", "ما معنى scold؟"],
+["What does the verb \"lock\" mean?", ["يفتح", "يقفل", "يسحب", "يدفع"], 1, "lock = يقفل.", "ما معنى lock؟"],
+["The word \"belt\" means:", ["حزام", "حذاء", "قبعة", "ساعة"], 0, "belt = حزام.", "كلمة belt تعني:"],
+["good → better → ___", ["the goodest", "the best", "the most good", "the better"], 1, "good صفة شاذة: the best.", "good ← better ← ؟"],
+["bad → worse → ___", ["the worst", "the baddest", "the most bad", "the worse"], 0, "bad – worse – the worst.", "bad ← worse ← ؟"],
+["far → further → ___", ["the farest", "the furthest", "the most far", "the farer"], 1, "far – further – the furthest.", "far ← further ← ؟"],
+["big → bigger → ___", ["the bigest", "the biggest", "the most big", "the bigger"], 1, "نضاعف الحرف الأخير: bigger / biggest.", "big ← bigger ← ؟"],
+["beautiful → more beautiful → ___", ["the most beautiful", "the beautifulest", "the beautiful", "most beautiful"], 0, "الصفة الطويلة: the most + adj.", "beautiful ← more beautiful ← ؟"],
+["The object form of \"I\" is:", ["my", "mine", "me", "myself"], 2, "I – me – my – mine – myself.", "صيغة المفعول به من I:"],
+["The possessive pronoun of \"we\" is:", ["our", "ours", "us", "ourselves"], 1, "our صفة ملكية، أما ours فضمير ملكية.", "ضمير الملكية لـ we:"],
+["The possessive pronoun of \"they\" is:", ["their", "them", "theirs", "themselves"], 2, "their صفة ملكية، أما theirs فضمير ملكية.", "ضمير الملكية لـ they:"],
+["The reflexive pronoun of \"she\" is:", ["herself", "hers", "her", "himself"], 0, "she → herself.", "الضمير الانعكاسي لـ she:"],
+["The reflexive pronoun of \"it\" is:", ["itself", "its", "it's", "themselves"], 0, "it → itself.", "الضمير الانعكاسي لـ it:"],
+["are not = ?", ["aren't", "arent", "ain't", "isn't"], 0, "are not = aren't.", "اختصار are not:"],
+["I have = ?", ["I'd", "I've", "I'm", "I's"], 1, "I have = I've.", "اختصار I have:"],
+["Let us = ?", ["Lets", "Let's", "Let'us", "Le's"], 1, "Let us = Let's.", "اختصار Let us:"],
+["wolf + s = ?", ["wolfs", "wolves", "wolfes", "wolvs"], 1, "wolf → wolves.", "wolf + s = ؟"],
+["hot + est = ?", ["hotest", "hottest", "hotter", "hotist"], 1, "نضاعف الحرف الأخير: hottest.", "hot + est = ؟"],
+["use + ful = ?", ["usefull", "useful", "usful", "usefuul"], 1, "ful بحرف l واحد.", "use + ful = ؟"],
+["Which expression is used for APOLOGY?", ["I'm so sorry", "Well done", "Be careful", "Rubbish"], 0, "I'm sorry للاعتذار.", "أي عبارة تُستخدم للاعتذار؟"],
+["Which expression is used for AGREEMENT?", ["I disagree", "You are right", "Never mind", "Look out"], 1, "You are right للموافقة.", "أي عبارة تدل على الموافقة؟"],
+["Which expression is used for SUGGESTION?", ["How about going out?", "You are wrong", "It's forbidden", "Poor Ali"], 0, "How about + V+ing للاقتراح.", "أي عبارة تدل على الاقتراح؟"],
+["Which expression is used for REQUEST?", ["Could you help me, please?", "Nonsense!", "It's your fault", "Excellent!"], 0, "Could you...please للطلب.", "أي عبارة تدل على الطلب؟"],
+["Which expression is used for WARNING?", ["Be careful!", "Good idea", "I agree", "Thank you"], 0, "Be careful / Look out للتحذير.", "أي عبارة تدل على التحذير؟"],
+["Which expression is used for PROHIBITION?", ["You mustn't", "You should", "I prefer", "Maybe"], 0, "mustn't / It is forbidden للمنع.", "أي عبارة تدل على المنع؟"],
+["Which expression is used for OBLIGATION?", ["You must study", "Let's play", "Perhaps", "Never mind"], 0, "must / have to للإلزام.", "أي عبارة تدل على الإلزام؟"],
+["Which expression is used for BLAME?", ["It is your fault", "Don't worry", "No problem", "Great!"], 0, "It is your fault للّوم.", "أي عبارة تدل على اللوم؟"],
+["Which expression is used for GRATITUDE?", ["I'm grateful", "How terrible", "Who cares", "Rubbish"], 0, "Thank you / I'm grateful للشكر.", "أي عبارة تدل على الشكر؟"],
+["___ is that girl? She is my sister.", ["Whose", "Who", "Which", "Why"], 1, "Who للسؤال عن الأشخاص.", "من تكون تلك الفتاة؟"],
+["___ is the nearest hospital? Two kilometres away.", ["How old", "How far", "How much", "How long"], 1, "How far للمسافة.", "كم يبعد أقرب مستشفى؟"],
+["___ is the price of this shirt?", ["How many", "How much", "How long", "How often"], 1, "How much للسعر أو الكمية.", "كم سعر هذا القميص؟"],
+["___ did you come late? Because of the traffic.", ["When", "Why", "Who", "Where"], 1, "Why للسؤال عن السبب.", "لماذا جئت متأخرًا؟"],
+["Thieves stole a precious painting. → A precious painting ___ stolen.", ["is", "was", "were", "has"], 1, "الماضي البسيط مجهول: was/were + V3.", "سرق اللصوص لوحة ثمينة."],
+["Huda has finished the exams. → The exams ___ finished.", ["has been", "have been", "were", "are"], 1, "المضارع التام مجهول: have/has been + V3، والمفعول جمع.", "أنهت هدى الامتحانات."],
+["We are studying English now. → English ___ studied now.", ["is being", "are being", "was", "has been"], 0, "المضارع المستمر مجهول: is/are being + V3.", "نحن ندرس الإنجليزية الآن."],
+["If you study hard, you ___ pass the exam.", ["would", "will", "would have", "had"], 1, "الشرط الأول: مضارع بسيط ثم will + V1.", "إذا ذاكرت بجد فستنجح."],
+["If you had studied hard, you ___ passed the exam.", ["will have", "would have", "would", "will"], 1, "الشرط الثالث: had + V3, would have + V3.", "لو كنت ذاكرت بجد لنجحت."],
+["Ali ___ the best player in the team.", ["is", "are", "be", "been"], 0, "فاعل مفرد غائب مع to be: is.", "علي أفضل لاعب في الفريق."],
+["Reported speech: \"We have won a prize.\" → They said they ___ won a prize.", ["have", "had", "has", "were"], 1, "have – has → had في الكلام المنقول.", "قالوا إنهم فازوا بجائزة."],
+["Reported speech: \"I will travel.\" → He said he ___ travel.", ["will", "would", "can", "is"], 1, "will → would في الكلام المنقول.", "قال إنه سيسافر."],
+["In reported speech, \"tomorrow\" becomes:", ["the day before", "the following day", "yesterday", "that day"], 1, "tomorrow → the following day / the day after.", "في الكلام المنقول تتحول tomorrow إلى:"],
+["What is the opposite of \"empty\"?", ["full", "light", "soft", "late"], 0, "عكس empty (فارغ) هو full (ممتلئ).", "ما عكس كلمة empty؟"]
+];
+const L=["A","B","C","D"],$=id=>document.getElementById(id);
+let Q=[],curEx=0,cur=0,score=0,answered=false,t0,timer;
+function tick(){const s=Math.floor((Date.now()-t0)/1000);$("tm").textContent=String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function show(){
+ const q=Q[cur];answered=false;
+ $("cnt").textContent="سؤال "+(cur+1)+" / "+Q.length;
+ $("pg").style.width=(cur/Q.length*100)+"%";
+ $("qt").innerHTML='<span class="qn">'+(cur+1)+'.</span>'+q[0];
+ $("opts").innerHTML=q[1].map((o,j)=>'<button class="o" data-j="'+j+'"><b>'+L[j]+'</b>'+o+'</button>').join("");
+ $("fb").className="fb";$("fb").textContent="";
+ $("tr").className="box tr";$("tr").textContent=q[4];
+ $("ex").className="box ex";$("ex").innerHTML="<b>الإجابة الصحيحة: "+L[q[2]]+" — "+q[1][q[2]]+"</b><br>"+q[3];
+ $("be").style.display="none";$("nx").style.display="none";
+ $("nx").textContent=cur===Q.length-1?"عرض النتيجة 🏁":"التالي ←";
+}
+$("opts").addEventListener("click",e=>{
+ const b=e.target.closest(".o");if(!b||answered)return;
+ answered=true;const j=+b.dataset.j,q=Q[cur],ok=j===q[2];
+ if(ok)score++;
+ document.querySelectorAll("#opts .o").forEach(x=>{x.disabled=true;const k=+x.dataset.j;if(k===q[2])x.classList.add("right");else if(k===j)x.classList.add("wrong")});
+ $("fb").className="fb "+(ok?"ok":"no");
+ $("fb").textContent=ok?"✅ إجابة صحيحة":"❌ إجابة خاطئة — الصحيحة: "+L[q[2]];
+ $("be").style.display="";$("nx").style.display="block";
+});
+$("bt").onclick=()=>$("tr").classList.toggle("show");
+$("be").onclick=()=>$("ex").classList.toggle("show");
+$("nx").onclick=()=>{
+ if(cur<Q.length-1){cur++;show();scrollTo({top:0,behavior:"smooth"})}
+ else{
+  clearInterval(timer);$("quiz").style.display="none";$("pg").style.width="100%";
+  const p=Math.round(score/Q.length*100);
+  $("sc").textContent=score+" / "+Q.length+" ("+p+"%)";
+  $("msg").textContent=p>=85?"🌟 ممتاز! مستواك جاهز للمسابقة":p>=65?"👍 جيد جدًا، راجع القواعد التي أخطأت فيها":p>=50?"🙂 مقبول، تحتاج لمراجعة القواعد":"📚 تحتاج لمذاكرة مكثفة، المعسكر مناسب لك";
+  $("res").style.display="block";scrollTo({top:0,behavior:"smooth"});
+ }
+};
+function start(n){curEx=n;Q=ALL.filter((_,i)=>i%4===n);for(let i=Q.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[Q[i],Q[j]]=[Q[j],Q[i]]}cur=0;score=0;$("menu").style.display="none";$("bar").style.display="flex";$("quiz").style.display="block";$("res").style.display="none";t0=Date.now();clearInterval(timer);timer=setInterval(tick,1000);tick();show()}
+function menu(){clearInterval(timer);$("menu").style.display="block";$("bar").style.display="none";$("quiz").style.display="none";$("res").style.display="none";scrollTo({top:0})}
+document.querySelectorAll("[data-ex]").forEach(b=>b.onclick=()=>start(+b.dataset.ex));
+$("again").onclick=()=>start(curEx);
+$("home").onclick=menu;
+$("home2").onclick=()=>{if(confirm("هل تريد الخروج من الاختبار والعودة للصفحة الرئيسية؟ لن تُحفظ إجاباتك."))menu()};
+menu();
+</script>
+</body>
+</html>
